@@ -12,6 +12,18 @@ public class Flashcard implements Comparable<Flashcard> {
         this.backSide = backSide;
     }
 
+    // Methods
+
+    //flip method
+    //changes the current side of the flashcard to the other side
+    public void flip() {
+        if (currentSide == 0) {
+            currentSide = 1;
+        } else {
+            currentSide = 0;
+        }
+    }
+
     //implement compareTo method
     //returns 0 if the front side Strings are the same
     //returns a positive number if the front side of this flashcard is greater than the front side of the other flashcard
