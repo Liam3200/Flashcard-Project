@@ -28,9 +28,14 @@ public class Flashcard implements Comparable<Flashcard> {
     //returns 0 if the front side Strings are the same
     //returns a positive number if the front side of this flashcard is greater than the front side of the other flashcard
     //returns a negative number if the front side of this flashcard is less than the front side of the other flashcard
+    //if the front sides are the same, then compare the back sides
     @Override
     public int compareTo(Flashcard other) {
-        return this.frontSide.compareTo(other.frontSide);
+        if (this.frontSide.equals(other.frontSide) && this.backSide.equals(other.backSide)) {
+            return 0;
+        } else {
+            return this.frontSide.compareTo(other.frontSide);
+        }
     }
 
     public String getFrontSide() {
@@ -57,6 +62,12 @@ public class Flashcard implements Comparable<Flashcard> {
         this.currentSide = currentSide;
     }
 
-    // Getters and setters
+    //to String method
+    //returns the front side, backside and current side of the flashcard
+    @Override
+    public String toString() {
+        return "Flashcard [frontSide=" + frontSide + ", backSide=" + backSide + ", currentSide=" + currentSide + "]";
+    }
+    
     
 }
