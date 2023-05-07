@@ -10,7 +10,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="590.0" style="-fx-background-color: #34699a; -fx-border-style: solid; -fx-border-width: 5; -fx-border-color: #113f67;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="greene.ctis310.PrimaryController">
    <children>
-      <Label fx:id="flashcardDisplay" alignment="CENTER" layoutX="88.0" layoutY="123.0" prefHeight="275.0" prefWidth="414.0" style="-fx-border-style: solid; -fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15;" text="Example Text" textAlignment="CENTER" wrapText="true">
+      <Label fx:id="flashcardDisplay" alignment="CENTER" layoutX="88.0" layoutY="123.0" onKeyPressed="#flipFlashcard" onMouseClicked="#flipFlashcard" prefHeight="275.0" prefWidth="414.0" style="-fx-border-style: solid; -fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15;" text="Example Text" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Apple SD Gothic Neo Regular" size="18.0" />
          </font>
@@ -34,7 +34,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label alignment="CENTER" layoutX="174.0" layoutY="18.0" prefHeight="49.0" prefWidth="237.0" style="-fx-background-color: #408ab4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-style: solid;" text="Example Set">
+      <Label fx:id="setTitle" alignment="CENTER" layoutX="174.0" layoutY="18.0" prefHeight="49.0" prefWidth="237.0" style="-fx-background-color: #408ab4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-style: solid;" text="Example Set">
          <font>
             <Font name="Apple SD Gothic Neo Regular" size="24.0" />
          </font>

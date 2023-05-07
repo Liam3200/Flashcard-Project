@@ -15,6 +15,7 @@ public class CardSet {
     private String author;
     private String description;
     private LinkedList<Flashcard> flashcards;
+    private Flashcard currentFlashcard;
 
     private File saveFile;
 
@@ -25,7 +26,10 @@ public class CardSet {
         this.title = title;
         this.author = author;
         this.description = description;
+        this.currentFlashcard = new Flashcard(title, description);
         this.flashcards = new LinkedList<Flashcard>();
+        this.flashcards.add(currentFlashcard);
+
         this.flashcardIterator = flashcards.listIterator();
         try {
             this.saveFile = new File(CardSet.class.getResource("/greene/ctis310/CardSets.txt").toURI());
@@ -284,6 +288,14 @@ public class CardSet {
 
     public void setFlashcards(LinkedList<Flashcard> flashcards) {
         this.flashcards = flashcards;
+    }
+
+    public Flashcard getCurrentFlashcard() {
+        return currentFlashcard;
+    }
+
+    public void setCurrentFlashcard(Flashcard currentFlashcard) {
+        this.currentFlashcard = currentFlashcard;
     }
 
     // toString method

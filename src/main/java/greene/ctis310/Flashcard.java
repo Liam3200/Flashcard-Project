@@ -6,6 +6,9 @@ public class Flashcard implements Comparable<Flashcard> {
     private String backSide; // The back side of the flashcard, represented as 1
     private short currentSide = 0;
 
+    public final int FRONT_SIDE = 0;
+    public final int BACK_SIDE = 1;
+
     // Constructor
     public Flashcard(String frontSide, String backSide) {
         this.frontSide = frontSide;
@@ -17,10 +20,10 @@ public class Flashcard implements Comparable<Flashcard> {
     //flip method
     //changes the current side of the flashcard to the other side
     public void flip() {
-        if (currentSide == 0) {
-            currentSide = 1;
+        if (currentSide == FRONT_SIDE) {
+            currentSide = BACK_SIDE;
         } else {
-            currentSide = 0;
+            currentSide = FRONT_SIDE;
         }
     }
 

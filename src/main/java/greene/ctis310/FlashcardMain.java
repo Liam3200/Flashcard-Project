@@ -25,7 +25,7 @@ public class FlashcardMain extends Application {
         stage.setTitle("Flashcards!");
 
         // create a new CardSet object
-        currentCardSet = new CardSet("Test", "Test", "Test");
+        currentCardSet = new CardSet("Example Set", "Test", "This is an example set.");
 
     }
 

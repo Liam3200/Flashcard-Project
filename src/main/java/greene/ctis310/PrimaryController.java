@@ -15,9 +15,12 @@ public class PrimaryController {
     private Button previousButton;
     @FXML
     private Label flashcardDisplay;
+    @FXML
+    private Label setTitle;
 
     private Flashcard currentFlashcard;
 
+    //loads the Create New Card Set window
     @FXML
     private void createCardSet() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(FlashcardMain.class.getResource("newset.fxml"));
@@ -27,6 +30,7 @@ public class PrimaryController {
         stage.show();
     }
 
+    //loads the Create New Flashcard window
     @FXML
     private void createNewFlashcard() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(FlashcardMain.class.getResource("newflashcard.fxml"));
@@ -36,6 +40,7 @@ public class PrimaryController {
         stage.show();
     }
 
+    //loads the Load Card Set window
     @FXML
     private void loadCardSets() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(FlashcardMain.class.getResource("loadcardset.fxml"));
@@ -57,5 +62,45 @@ public class PrimaryController {
             nextButton.setDisable(true);
         }
         
+    }
+
+    @FXML
+    private void previousFlashcard() {
+        // get the previous flashcard from the CardSet object
+        // display the previous flashcard
+        // if the flashcard is the first flashcard, disable the previous button
+        currentFlashcard = FlashcardMain.currentCardSet.previousFlashcard();
+        if (currentFlashcard != null) {
+            flashcardDisplay.setText(currentFlashcard.getFrontSide());
+        } else {
+            previousButton.setDisable(true);
+        }
+    }
+
+    @FXML
+    private void saveCardSet() {
+        // save the current card set to a file
+        // display a message that the card set was saved
+        try {
+            FlashcardMain.currentCardSet.saveCardSet();
+        } catch (IOException e) {
+            System.out.println("Error saving card set!");
+        }
+        flashcardDisplay.setText("Card set saved!");
+    }
+
+    @FXML
+    private void flipFlashcard() {
+        // flip the flashcard over to the back side
+        // if the flashcard is on the back side, flip it back to the front side
+        currentFlashcard = FlashcardMain.currentCardSet.getCurrentFlashcard();
+        if (currentFlashcard != null) {
+            currentFlashcard.flip();
+            if (currentFlashcard.getCurrentSide() == 0) {
+                flashcardDisplay.setText(currentFlashcard.getFrontSide());
+            } else {
+                flashcardDisplay.setText(currentFlashcard.getBackSide());
+            }
+        }
     }
 }
