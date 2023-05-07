@@ -58,10 +58,7 @@ public class PrimaryController {
         currentFlashcard = FlashcardMain.currentCardSet.nextFlashcard();
         if (currentFlashcard != null) {
             flashcardDisplay.setText(currentFlashcard.getFrontSide());
-        } else {
-            nextButton.setDisable(true);
         }
-        
     }
 
     @FXML
@@ -72,8 +69,6 @@ public class PrimaryController {
         currentFlashcard = FlashcardMain.currentCardSet.previousFlashcard();
         if (currentFlashcard != null) {
             flashcardDisplay.setText(currentFlashcard.getFrontSide());
-        } else {
-            previousButton.setDisable(true);
         }
     }
 

@@ -29,8 +29,6 @@ public class CardSet {
         this.currentFlashcard = new Flashcard(title, description);
         this.flashcards = new LinkedList<Flashcard>();
         this.flashcards.add(currentFlashcard);
-
-        this.flashcardIterator = flashcards.listIterator();
         try {
             this.saveFile = new File(CardSet.class.getResource("/greene/ctis310/CardSets.txt").toURI());
         } catch (URISyntaxException e) {
@@ -219,7 +217,9 @@ public class CardSet {
         // if the flashcards LinkedList is not empty
         if (!flashcards.isEmpty() && flashcardIterator.hasNext()) {
             // return the first Flashcard object in the flashcards LinkedList
-            return flashcardIterator.next();
+            flashcardIterator.next();
+            currentFlashcard = flashcardIterator.next();
+            return currentFlashcard;
         }
         // return null
         return null;
@@ -239,7 +239,9 @@ public class CardSet {
         // if the flashcards LinkedList is not empty
         if (!flashcards.isEmpty() && flashcardIterator.hasPrevious()) {
             // return the last Flashcard object in the flashcards LinkedList
-            return flashcardIterator.previous();
+            flashcardIterator.previous();
+            currentFlashcard = flashcardIterator.previous();
+            return currentFlashcard;
         }
         // return null
         return null;
@@ -249,12 +251,14 @@ public class CardSet {
     // adds a flashcard to the flashcards LinkedList
     public void addFlashcard(Flashcard flashcard) {
         flashcards.add(flashcard);
+        flashcardIterator = flashcards.listIterator(flashcards.indexOf(currentFlashcard));
     }
 
     // removeFlashcard method
     // removes a flashcard from the flashcards LinkedList
     public void removeFlashcard(Flashcard flashcard) {
         flashcards.remove(flashcard);
+        flashcardIterator = flashcards.listIterator(flashcards.indexOf(currentFlashcard));
     }
 
     // getters and setters
