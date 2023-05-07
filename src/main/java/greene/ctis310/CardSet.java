@@ -175,17 +175,19 @@ public class CardSet {
      * @param none
      */
     // loads the CardSet object from the file
-    public CardSet loadCardSet() throws IOException {
+    public CardSet loadCardSet(String loadTitle, String loadAuthor) throws IOException {
         // create a Scanner object
         Scanner scanner = new Scanner(saveFile);
+        scanner.useDelimiter(",");
         // while the Scanner object has another line
-        while (scanner.hasNextLine()) {
+        while (scanner.hasNext()) {
             // if the line contains the title of the CardSet object
-            if (scanner.nextLine().contains(this.title) && scanner.nextLine().contains(this.author) && scanner.nextLine().contains(this.description)) {
+            if (scanner.next().contains(loadTitle) && scanner.next().contains(loadAuthor)) {
+                String loadDescription = scanner.next();
                 // create a CardSet object
-                CardSet cardSet = new CardSet(this.title, this.author, this.description);
+                CardSet cardSet = new CardSet(loadTitle, loadAuthor, loadDescription);
                 // while the Scanner object has another line
-                while (scanner.hasNextLine()) {
+                while (scanner.hasNext()) {
                     // create a String array
                     String[] flashcard = scanner.nextLine().split(",");
                     // create a Flashcard object

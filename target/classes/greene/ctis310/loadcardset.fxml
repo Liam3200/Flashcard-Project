@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="229.0" prefWidth="451.0" style="-fx-background-color: #34699a;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="327.0" layoutY="150.0" mnemonicParsing="false" onAction="#loadSet" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #65c6c4;" text="Load">
+         <font>
+            <Font name="Apple SD Gothic Neo Regular" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="cancelButton" layoutX="22.0" layoutY="150.0" mnemonicParsing="false" onAction="#cancel" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #65c6c4;" text="Cancel">
+         <font>
+            <Font name="Apple SD Gothic Neo Regular" size="18.0" />
+         </font>
+      </Button>
+      <TextField fx:id="loadTitle" layoutX="166.0" layoutY="28.0" prefHeight="37.0" prefWidth="249.0" />
+      <TextField fx:id="loadAuthor" layoutX="166.0" layoutY="84.0" prefHeight="37.0" prefWidth="249.0" />
+      <Label alignment="CENTER" layoutX="31.0" layoutY="28.0" prefHeight="37.0" prefWidth="112.0" style="-fx-background-color: #408ab4; -fx-border-style: solid; -fx-border-radius: 10; -fx-background-radius: 10;" text="Enter the Title:">
+         <font>
+            <Font name="Apple SD Gothic Neo Regular" size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="31.0" layoutY="84.0" prefHeight="37.0" prefWidth="112.0" style="-fx-background-color: #408ab4; -fx-border-style: solid; -fx-border-radius: 10; -fx-background-radius: 10;" text="Enter the Author:">
+         <font>
+            <Font name="Apple SD Gothic Neo Regular" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
