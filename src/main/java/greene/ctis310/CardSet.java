@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 public class CardSet {
@@ -17,12 +18,15 @@ public class CardSet {
 
     private File saveFile;
 
+    private ListIterator<Flashcard> flashcardIterator;
+
     // Constructor
     public CardSet(String title, String author, String description) {
         this.title = title;
         this.author = author;
         this.description = description;
         this.flashcards = new LinkedList<Flashcard>();
+        this.flashcardIterator = flashcards.listIterator();
         try {
             this.saveFile = new File(CardSet.class.getResource("/greene/ctis310/CardSets.txt").toURI());
         } catch (URISyntaxException e) {
@@ -150,6 +154,91 @@ public class CardSet {
         scanner.close();
         // return false
         return false;
+    }
+
+    /*
+     * @method loadCardSet
+     * 
+     * The loadCardSet method should load the CardSet object from the file. Creates
+     * a Scanner object to read the file. If the CardSet object is present in the
+     * file, the method should create a CardSet object and return it. If the CardSet
+     * object is not present in the file, the method should return null.
+     * 
+     * @throws IOException
+     * 
+     * @return CardSet object if the CardSet object was successfully loaded from the
+     * file, null if the
+     * CardSet object was not successfully loaded from the file
+     * 
+     * @param none
+     */
+    // loads the CardSet object from the file
+    public CardSet loadCardSet() throws IOException {
+        // create a Scanner object
+        Scanner scanner = new Scanner(saveFile);
+        // while the Scanner object has another line
+        while (scanner.hasNextLine()) {
+            // if the line contains the title of the CardSet object
+            if (scanner.nextLine().contains(this.title) && scanner.nextLine().contains(this.author) && scanner.nextLine().contains(this.description)) {
+                // create a CardSet object
+                CardSet cardSet = new CardSet(this.title, this.author, this.description);
+                // while the Scanner object has another line
+                while (scanner.hasNextLine()) {
+                    // create a String array
+                    String[] flashcard = scanner.nextLine().split(",");
+                    // create a Flashcard object
+                    Flashcard card = new Flashcard(flashcard[0], flashcard[1]);
+                    // add the Flashcard object to the CardSet object
+                    cardSet.addFlashcard(card);
+                }
+                scanner.close();
+                // return the CardSet object
+                return cardSet;
+            }
+        }
+        scanner.close();
+        // return null
+        return null;
+    }
+
+    /*
+     * @method nextFlashcard
+     * 
+     * The nextFlashcard method should return the next Flashcard object in the
+     * flashcards LinkedList.
+     * 
+     * @return Flashcard object
+     * 
+     */
+    // returns the next Flashcard object in the flashcards LinkedList
+    public Flashcard nextFlashcard() {
+        // if the flashcards LinkedList is not empty
+        if (!flashcards.isEmpty() && flashcardIterator.hasNext()) {
+            // return the first Flashcard object in the flashcards LinkedList
+            return flashcardIterator.next();
+        }
+        // return null
+        return null;
+    }
+
+    /*
+     * @method previousFlashcard
+     * 
+     * The previousFlashcard method should return the previous Flashcard object in
+     * the flashcards LinkedList.
+     * 
+     * @return Flashcard object
+     * 
+     */
+    // returns the previous Flashcard object in the flashcards LinkedList
+    public Flashcard previousFlashcard() {
+        // if the flashcards LinkedList is not empty
+        if (!flashcards.isEmpty() && flashcardIterator.hasPrevious()) {
+            // return the last Flashcard object in the flashcards LinkedList
+            return flashcardIterator.previous();
+        }
+        // return null
+        return null;
     }
 
     // addFlashcard method
