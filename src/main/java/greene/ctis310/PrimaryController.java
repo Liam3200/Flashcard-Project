@@ -28,7 +28,8 @@ public class PrimaryController {
     // loads the Create New Card Set window
     @FXML
     private void createCardSet() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(FlashcardMain.class.getResource("newset.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(FlashcardMain.class.getResource("/newset.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(fxmlLoader.load()));
         stage.setTitle("New Card Set");
@@ -38,7 +39,8 @@ public class PrimaryController {
     // loads the Create New Flashcard window
     @FXML
     private void createNewFlashcard() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(FlashcardMain.class.getResource("newflashcard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(FlashcardMain.class.getResource("/newflashcard.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(fxmlLoader.load()));
         stage.setTitle("New Flashcard");
@@ -48,12 +50,18 @@ public class PrimaryController {
     // loads the Load Card Set window
     @FXML
     private void loadCardSets() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(FlashcardMain.class.getResource("loadcardset.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(FlashcardMain.class.getResource("/loadcardset.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(fxmlLoader.load()));
         stage.setTitle("Load Card Set");
         stage.show();
     }
+
+    // @FXML
+    // private void saveCardSet()  {
+
+    // }
 
     @FXML
     private void nextFlashcard() {
