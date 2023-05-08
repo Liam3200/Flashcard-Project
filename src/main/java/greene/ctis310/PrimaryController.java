@@ -58,10 +58,19 @@ public class PrimaryController {
         stage.show();
     }
 
-    // @FXML
-    // private void saveCardSet()  {
-
-    // }
+    @FXML
+    private void saveCardSet() {
+        // save the current card set to a file
+        // display a message that the card set was saved
+        try {
+            if (FlashcardMain.currentCardSet.saveCardSet() == -1) {
+                flashcardDisplay.setText("Error saving card set!");
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving card set!");
+        }
+        flashcardDisplay.setText("Card set saved!");
+    }
 
     @FXML
     private void nextFlashcard() {
@@ -106,18 +115,6 @@ public class PrimaryController {
                 flashcardDisplay.setText(currentFlashcard.getFrontSide());
             });
         }
-    }
-
-    @FXML
-    private void saveCardSet() {
-        // save the current card set to a file
-        // display a message that the card set was saved
-        try {
-            FlashcardMain.currentCardSet.saveCardSet();
-        } catch (IOException e) {
-            System.out.println("Error saving card set!");
-        }
-        flashcardDisplay.setText("Card set saved!");
     }
 
     @FXML

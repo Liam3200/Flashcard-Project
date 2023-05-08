@@ -1,13 +1,17 @@
 package greene.ctis310;
 
 import java.io.BufferedWriter;
-import java.io.File;
+// import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Scanner;
+
 
 public class CardSet {
     // Instance variables
@@ -17,7 +21,7 @@ public class CardSet {
     private LinkedList<Flashcard> flashcards;
     private Flashcard currentFlashcard;
 
-    private File saveFile;
+    private Path saveFileLocation;
 
     private ListIterator<Flashcard> flashcardIterator;
 
@@ -30,7 +34,7 @@ public class CardSet {
         this.flashcards = new LinkedList<Flashcard>();
         this.flashcards.add(currentFlashcard);
         try {
-            this.saveFile = new File(CardSet.class.getResource("/CardSets.txt").toURI());
+            this.saveFileLocation = Paths.get(CardSet.class.getResource("/CardSets.txt").toURI());
         } catch (URISyntaxException e) {
             System.out.println("File is not found.");
         } catch (NullPointerException e) {
@@ -42,7 +46,8 @@ public class CardSet {
 
     /*
      * @method createCardSet
-     * The createCardSet method should write the CardSet object to a file if it is not
+     * The createCardSet method should write the CardSet object to a file if it is
+     * not
      * already present in
      * the file. Creates a Scanner object to read the file. If the CardSet object is
      * already present in
@@ -65,8 +70,9 @@ public class CardSet {
     public int createCardSet() throws IOException {
         if (!checkForCardSet()) {
             // create a BufferedWriter object
-            BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile));
-            writer.write(this.title + "," + this.author + "," + this.description + ",");
+            FileWriter location = new FileWriter(saveFileLocation.toString());
+            PrintWriter writer = new PrintWriter(location, true);
+            writer.write("\n" + this.title + "," + this.author + "," + this.description + ",");
             for (Flashcard flashcard : flashcards) {
                 writer.write(flashcard.getFrontSide() + "," + flashcard.getBackSide() + "\n");
             }
@@ -80,7 +86,8 @@ public class CardSet {
      * @method saveCardSet
      * 
      * The saveCardSet method should check the file for the CardSet object. If the
-     * CardSet object is present, it updates the CardSet object in the file and returns 0. If the
+     * CardSet object is present, it updates the CardSet object in the file and
+     * returns 0. If the
      * CardSet object is not present, it returns -1.
      * 
      * @throws IOException
@@ -94,29 +101,29 @@ public class CardSet {
     public int saveCardSet() throws IOException {
         if (checkForCardSet()) {
             // create a Scanner object
-            Scanner scanner = new Scanner(saveFile);
+            Scanner scanner = new Scanner(saveFileLocation.toFile());
             // create a StringBuilder object
             StringBuilder builder = new StringBuilder();
             // while the Scanner object has another line
             while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
                 // if the line contains the title of the CardSet object
-                if (scanner.nextLine().contains(this.title) && scanner.nextLine().contains(this.author) && scanner.nextLine().contains(this.description)) {
-                    // for each Flashcard object in the flashcards LinkedList that is not already in the file
+                if (line.contains(this.title) && line.contains(this.author) && line.contains(this.description)) {
+                    // for each Flashcard object in the flashcards LinkedList that is not already in
+                    // the file
                     for (Flashcard flashcard : flashcards) {
-                        if (!scanner.nextLine().contains(flashcard.getFrontSide()) && !scanner.nextLine().contains(flashcard.getBackSide())) {
+                        if (!line.contains(flashcard.getFrontSide()) && !line.contains(flashcard.getBackSide())) {
                             // append the front side and back side of the Flashcard object to the
                             // StringBuilder object
-                            builder.append(flashcard.getFrontSide() + "," + flashcard.getBackSide() + "\n");
+                            builder.append(flashcard.getFrontSide() + "," + flashcard.getBackSide());
                         }
                     }
-                } else {
-                    // append the line to the StringBuilder object
-                    builder.append(scanner.nextLine() + "\n");
                 }
             }
             scanner.close();
             // create a BufferedWriter object
-            BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile));
+            FileWriter location = new FileWriter(saveFileLocation.toString());
+            BufferedWriter writer = new BufferedWriter(location);
             // write the StringBuilder object to the file
             writer.write(builder.toString());
             writer.close();
@@ -143,7 +150,7 @@ public class CardSet {
      */
     private boolean checkForCardSet() throws IOException {
         // create a Scanner object
-        Scanner scanner = new Scanner(saveFile);
+        Scanner scanner = new Scanner(saveFileLocation.toFile());
         // while the Scanner object has another line
         while (scanner.hasNextLine()) {
             // if the line contains the title of the CardSet object
@@ -177,7 +184,7 @@ public class CardSet {
     // loads the CardSet object from the file
     public CardSet loadCardSet(String loadTitle, String loadAuthor) throws IOException {
         // create a Scanner object
-        Scanner scanner = new Scanner(saveFile);
+        Scanner scanner = new Scanner(saveFileLocation.toFile());
         scanner.useDelimiter(",");
         // while the Scanner object has another line
         while (scanner.hasNext()) {
@@ -259,8 +266,10 @@ public class CardSet {
     // removeFlashcard method
     // removes a flashcard from the flashcards LinkedList
     public void removeFlashcard(Flashcard flashcard) {
-        flashcards.remove(flashcard);
-        flashcardIterator = flashcards.listIterator(flashcards.indexOf(currentFlashcard));
+        if (flashcards.size() > 1) {
+            flashcards.remove(flashcard);
+            flashcardIterator = flashcards.listIterator(flashcards.indexOf(currentFlashcard));
+        }
     }
 
     // getters and setters

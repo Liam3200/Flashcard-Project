@@ -29,6 +29,10 @@ public class LoadSetController {
         String author = loadAuthor.getText();
         if (title != null || author != null) {
             FlashcardMain.currentCardSet = new CardSet(title, author, "");
+            
+            // close the window
+            Parent parent = cancelButton.getParent();
+            parent.getScene().getWindow().hide();
         } else {
             if (title == null) {
                 loadTitle.setPromptText("Erorr: nothing entered");
