@@ -34,7 +34,8 @@ public class FlashcardMain extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(FlashcardMain.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(FlashcardMain.class.getResource("/"+fxml + ".fxml"));
         return fxmlLoader.load();
     }
 

@@ -30,7 +30,7 @@ public class CardSet {
         this.flashcards = new LinkedList<Flashcard>();
         this.flashcards.add(currentFlashcard);
         try {
-            this.saveFile = new File(CardSet.class.getResource("/greene/ctis310/CardSets.txt").toURI());
+            this.saveFile = new File(CardSet.class.getResource("/CardSets.txt").toURI());
         } catch (URISyntaxException e) {
             System.out.println("File is not found.");
         } catch (NullPointerException e) {
