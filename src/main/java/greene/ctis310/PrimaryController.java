@@ -1,12 +1,15 @@
 package greene.ctis310;
 
 import java.io.IOException;
+
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class PrimaryController {
     @FXML
@@ -18,9 +21,11 @@ public class PrimaryController {
     @FXML
     private Label setTitle;
 
+    TranslateTransition translateTransition;
+
     private Flashcard currentFlashcard;
 
-    //loads the Create New Card Set window
+    // loads the Create New Card Set window
     @FXML
     private void createCardSet() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(FlashcardMain.class.getResource("newset.fxml"));
@@ -30,7 +35,7 @@ public class PrimaryController {
         stage.show();
     }
 
-    //loads the Create New Flashcard window
+    // loads the Create New Flashcard window
     @FXML
     private void createNewFlashcard() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(FlashcardMain.class.getResource("newflashcard.fxml"));
@@ -40,7 +45,7 @@ public class PrimaryController {
         stage.show();
     }
 
-    //loads the Load Card Set window
+    // loads the Load Card Set window
     @FXML
     private void loadCardSets() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(FlashcardMain.class.getResource("loadcardset.fxml"));
@@ -57,7 +62,19 @@ public class PrimaryController {
         // if the flashcard is the last flashcard, disable the next button
         currentFlashcard = FlashcardMain.currentCardSet.nextFlashcard();
         if (currentFlashcard != null) {
-            flashcardDisplay.setText(currentFlashcard.getFrontSide());
+            translateTransition = new TranslateTransition();
+            translateTransition.setDuration(Duration.seconds(1));
+            translateTransition.setNode(flashcardDisplay);
+            translateTransition.setToX(flashcardDisplay.getTranslateX() + 80);
+            translateTransition.setAutoReverse(true);
+            translateTransition.setCycleCount(2);
+            translateTransition.setRate(4);
+            translateTransition.play();
+            translateTransition.setOnFinished(event -> {
+                flashcardDisplay.setTranslateX(0);
+                flashcardDisplay.setText(currentFlashcard.getFrontSide());
+            });
+
         }
     }
 
@@ -68,7 +85,18 @@ public class PrimaryController {
         // if the flashcard is the first flashcard, disable the previous button
         currentFlashcard = FlashcardMain.currentCardSet.previousFlashcard();
         if (currentFlashcard != null) {
-            flashcardDisplay.setText(currentFlashcard.getFrontSide());
+            translateTransition = new TranslateTransition();
+            translateTransition.setDuration(Duration.seconds(1));
+            translateTransition.setNode(flashcardDisplay);
+            translateTransition.setToX(flashcardDisplay.getTranslateX() - 80);
+            translateTransition.setAutoReverse(true);
+            translateTransition.setCycleCount(2);
+            translateTransition.setRate(4);
+            translateTransition.play();
+            translateTransition.setOnFinished(event -> {
+                flashcardDisplay.setTranslateX(0);
+                flashcardDisplay.setText(currentFlashcard.getFrontSide());
+            });
         }
     }
 
@@ -90,12 +118,23 @@ public class PrimaryController {
         // if the flashcard is on the back side, flip it back to the front side
         currentFlashcard = FlashcardMain.currentCardSet.getCurrentFlashcard();
         if (currentFlashcard != null) {
-            currentFlashcard.flip();
-            if (currentFlashcard.getCurrentSide() == 0) {
-                flashcardDisplay.setText(currentFlashcard.getFrontSide());
-            } else {
-                flashcardDisplay.setText(currentFlashcard.getBackSide());
-            }
+            translateTransition = new TranslateTransition();
+            translateTransition.setDuration(Duration.seconds(1));
+            translateTransition.setNode(flashcardDisplay);
+            translateTransition.setToX(flashcardDisplay.getTranslateX() + 20);
+            translateTransition.setAutoReverse(true);
+            translateTransition.setCycleCount(2);
+            translateTransition.setRate(10);
+            translateTransition.playFromStart();
+            translateTransition.setOnFinished(event -> {
+                flashcardDisplay.setTranslateX(0);
+                currentFlashcard.flip();
+                if (currentFlashcard.getCurrentSide() == 0) {
+                    flashcardDisplay.setText(currentFlashcard.getFrontSide());
+                } else {
+                    flashcardDisplay.setText(currentFlashcard.getBackSide());
+                }
+            });
         }
     }
 }
