@@ -1,5 +1,7 @@
 package greene.ctis310;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -28,8 +30,12 @@ public class LoadSetController {
         String title = loadTitle.getText();
         String author = loadAuthor.getText();
         if (title != null || author != null) {
-            FlashcardMain.currentCardSet = new CardSet(title, author, "");
-            
+            try {
+                FlashcardMain.currentCardSet = FlashcardMain.currentCardSet.loadCardSet(title, author);
+                // PrimaryController.updateDisplays();
+            } catch (IOException e) {
+                e.getMessage();
+            }
             // close the window
             Parent parent = cancelButton.getParent();
             parent.getScene().getWindow().hide();

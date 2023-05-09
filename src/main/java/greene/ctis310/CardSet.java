@@ -12,6 +12,8 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Scanner;
 
+// import org.apache.commons.io.FileUtils;
+
 
 public class CardSet {
     // Instance variables
@@ -25,6 +27,32 @@ public class CardSet {
 
     private ListIterator<Flashcard> flashcardIterator;
 
+    /*
+     * @Constructor CardSet
+     * 
+     * The CardSet constructor should initialize the instance variables title,
+     * author, and description
+     * with the values passed to the constructor. The constructor should also
+     * initialize the instance
+     * variable currentFlashcard with a new Flashcard object. The constructor should
+     * initialize the
+     * instance variable flashcards with a new LinkedList object. The constructor
+     * should add the
+     * currentFlashcard object to the flashcards LinkedList.
+     * The constructor should initialize the instance variable saveFileLocation with
+     * the path to the
+     * CardSets.txt file. The constructor should catch the URISyntaxException and
+     * NullPointerException
+     * exceptions and print the message "File is not found." to the console.
+     * 
+     * @param title
+     * @param author
+     * @param description
+     * 
+     * @return none
+     * 
+     * 
+     */
     // Constructor
     public CardSet(String title, String author, String description) {
         this.title = title;
@@ -77,6 +105,9 @@ public class CardSet {
                 writer.write(flashcard.getFrontSide() + "," + flashcard.getBackSide() + "\n");
             }
             writer.close();
+            // File tempFile = new File("/CardSets.txt");
+            // File saveFile = new File("../../src/main/resources/CardSets.txt");
+            // FileUtils.copyFile(tempFile, saveFile);
             return 0;
         }
         return -1;
@@ -127,6 +158,9 @@ public class CardSet {
             // write the StringBuilder object to the file
             writer.write(builder.toString());
             writer.close();
+            // File tempFile = new File("/CardSets.txt");
+            // File saveFile = new File("../../src/main/resources/CardSets.txt");
+            // FileUtils.copyFile(tempFile, saveFile);
             // return 0
             return 0;
         }
@@ -153,8 +187,9 @@ public class CardSet {
         Scanner scanner = new Scanner(saveFileLocation.toFile());
         // while the Scanner object has another line
         while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
             // if the line contains the title of the CardSet object
-            if (scanner.nextLine().contains(this.title) && scanner.nextLine().contains(this.author)) {
+            if (line.contains(this.title) && line.contains(this.author)) {
                 scanner.close();
                 // return true
                 return true;
@@ -196,9 +231,10 @@ public class CardSet {
                 // while the Scanner object has another line
                 while (scanner.hasNext()) {
                     // create a String array
-                    String[] flashcard = scanner.nextLine().split(",");
+                    String frontSide = scanner.next();
+                    String backSide = scanner.next();
                     // create a Flashcard object
-                    Flashcard card = new Flashcard(flashcard[0], flashcard[1]);
+                    Flashcard card = new Flashcard(frontSide, backSide);
                     // add the Flashcard object to the CardSet object
                     cardSet.addFlashcard(card);
                 }

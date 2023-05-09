@@ -73,6 +73,16 @@ public class PrimaryController {
     }
 
     @FXML
+    private void refreshDisplay() {
+        // refresh the display
+        // this is used when a new card set is loaded
+        // or a new flashcard is created
+        setTitle.setText(FlashcardMain.currentCardSet.getTitle());
+        currentFlashcard = FlashcardMain.currentCardSet.getCurrentFlashcard();
+        flashcardDisplay.setText(currentFlashcard.getFrontSide());
+    }
+
+    @FXML
     private void nextFlashcard() {
         // get the next flashcard from the CardSet object
         // display the next flashcard
@@ -141,5 +151,13 @@ public class PrimaryController {
                 }
             });
         }
+    }
+
+    @FXML
+    public void updateDisplays() {
+        // change the title to the current card set
+        setTitle.setText(FlashcardMain.currentCardSet.getTitle());
+        // display the first flashcard
+        flashcardDisplay.setText(FlashcardMain.currentCardSet.getCurrentFlashcard().getFrontSide());
     }
 }

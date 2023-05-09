@@ -7,41 +7,40 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="greene.ctis310.NewSetController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="570.0" style="-fx-background-color: #34699a; -fx-border-style: solid; -fx-border-color: #113f67; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="greene.ctis310.NewSetController">
    <children>
-      <Label alignment="CENTER" layoutX="197.0" layoutY="14.0" prefHeight="42.0" prefWidth="177.0" text="New Card Set">
+      <Label alignment="CENTER" layoutX="197.0" layoutY="14.0" prefHeight="42.0" prefWidth="177.0" style="-fx-background-color: #408ab4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-style: solid;" text="New Card Set">
          <font>
             <Font name="Apple SD Gothic Neo Regular" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="cancelButton" alignment="CENTER" layoutX="14.0" layoutY="242.0" mnemonicParsing="false" onAction="#cancel" prefHeight="42.0" prefWidth="123.0" text="Cancel">
+      <Button fx:id="cancelButton" alignment="CENTER" layoutX="14.0" layoutY="242.0" mnemonicParsing="false" onAction="#cancel" prefHeight="42.0" prefWidth="123.0" style="-fx-background-color: #65c6c4;" text="Cancel">
          <font>
             <Font name="Apple SD Gothic Neo Regular" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="saveButton" alignment="CENTER" layoutX="437.0" layoutY="242.0" mnemonicParsing="false" onAction="#save" prefHeight="42.0" prefWidth="123.0" text="Save">
+      <Button fx:id="saveButton" alignment="CENTER" layoutX="437.0" layoutY="242.0" mnemonicParsing="false" onAction="#save" prefHeight="42.0" prefWidth="123.0" style="-fx-background-color: #65c6c4;" text="Save">
          <font>
             <Font name="Apple SD Gothic Neo Regular" size="18.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" layoutX="14.0" layoutY="65.0" prefHeight="42.0" prefWidth="87.0" text="Author:">
+      <Label alignment="CENTER" layoutX="14.0" layoutY="65.0" prefHeight="42.0" prefWidth="87.0" style="-fx-background-color: #408ab4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-style: solid;" text="Author:">
          <font>
             <Font name="Apple SD Gothic Neo Regular" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="authorTextField" layoutX="101.0" layoutY="73.0" promptText="Your name" />
-      <Label alignment="CENTER" layoutX="270.0" layoutY="65.0" prefHeight="42.0" prefWidth="87.0" text="Title:">
+      <TextField fx:id="authorTextField" layoutX="110.0" layoutY="73.0" promptText="Your name" />
+      <Label alignment="CENTER" layoutX="300.0" layoutY="65.0" prefHeight="42.0" prefWidth="87.0" style="-fx-background-color: #408ab4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-style: solid;" text="Title:">
          <font>
             <Font name="Apple SD Gothic Neo Regular" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="titleTextField" layoutX="357.0" layoutY="73.0" promptText="Name of cad set" />
-      <Label alignment="CENTER" layoutX="14.0" layoutY="113.0" prefHeight="42.0" prefWidth="108.0" text="Description:">
+      <TextField fx:id="titleTextField" layoutX="396.0" layoutY="73.0" promptText="Name of cad set" />
+      <Label alignment="CENTER" layoutX="14.0" layoutY="113.0" prefHeight="42.0" prefWidth="108.0" style="-fx-background-color: #408ab4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-style: solid;" text="Description:">
          <font>
             <Font name="Apple SD Gothic Neo Regular" size="18.0" />
          </font>
       </Label>
-      <TextArea fx:id="descriptionField" layoutX="122.0" layoutY="113.0" prefHeight="114.0" prefWidth="406.0" />
+      <TextArea fx:id="descriptionField" layoutX="131.0" layoutY="113.0" prefHeight="114.0" prefWidth="406.0" />
    </children>
 </Pane>
