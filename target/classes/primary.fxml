@@ -43,7 +43,7 @@
         <items>
           <MenuItem fx:id="newCardSet" mnemonicParsing="false" onAction="#createCardSet" style="-background-color: #65c6c4;" text="New Card Set" />
           <MenuItem mnemonicParsing="false" onAction="#loadCardSets" style="-background-color: #65c6c4;" text="Load Card Set" />
-            <MenuItem mnemonicParsing="false" onAction="#saveCardSet" style="-background-color: #65c6c4;" text="Save Card Set" />
+            <MenuItem disable="true" mnemonicParsing="false" style="-background-color: #65c6c4;" text="Save Card Set" />
         </items>
          <font>
             <Font name="Apple SD Gothic Neo Regular" size="18.0" />

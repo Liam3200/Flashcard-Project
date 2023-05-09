@@ -4,7 +4,6 @@ import java.io.BufferedWriter;
 // import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -99,10 +98,10 @@ public class CardSet {
         if (!checkForCardSet()) {
             // create a BufferedWriter object
             FileWriter location = new FileWriter(saveFileLocation.toString());
-            PrintWriter writer = new PrintWriter(location, true);
-            writer.write("\n" + this.title + "," + this.author + "," + this.description + ",");
+            BufferedWriter writer = new BufferedWriter(location);
+            writer.write("\n" + this.title + "," + this.author + "," + this.description.replaceAll(",", ""));
             for (Flashcard flashcard : flashcards) {
-                writer.write(flashcard.getFrontSide() + "," + flashcard.getBackSide() + "\n");
+                writer.write(","+flashcard.getFrontSide() + "," + flashcard.getBackSide().replaceAll(",",""));
             }
             writer.close();
             // File tempFile = new File("/CardSets.txt");
@@ -129,44 +128,44 @@ public class CardSet {
      * @param none
      */
     // updates the CardSet object in the file
-    public int saveCardSet() throws IOException {
-        if (checkForCardSet()) {
-            // create a Scanner object
-            Scanner scanner = new Scanner(saveFileLocation.toFile());
-            // create a StringBuilder object
-            StringBuilder builder = new StringBuilder();
-            // while the Scanner object has another line
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                // if the line contains the title of the CardSet object
-                if (line.contains(this.title) && line.contains(this.author) && line.contains(this.description)) {
-                    // for each Flashcard object in the flashcards LinkedList that is not already in
-                    // the file
-                    for (Flashcard flashcard : flashcards) {
-                        if (!line.contains(flashcard.getFrontSide()) && !line.contains(flashcard.getBackSide())) {
-                            // append the front side and back side of the Flashcard object to the
-                            // StringBuilder object
-                            builder.append(flashcard.getFrontSide() + "," + flashcard.getBackSide());
-                        }
-                    }
-                }
-            }
-            scanner.close();
-            // create a BufferedWriter object
-            FileWriter location = new FileWriter(saveFileLocation.toString());
-            BufferedWriter writer = new BufferedWriter(location);
-            // write the StringBuilder object to the file
-            writer.write(builder.toString());
-            writer.close();
-            // File tempFile = new File("/CardSets.txt");
-            // File saveFile = new File("../../src/main/resources/CardSets.txt");
-            // FileUtils.copyFile(tempFile, saveFile);
-            // return 0
-            return 0;
-        }
-        // return -1
-        return -1;
-    }
+    // public int saveCardSet() throws IOException {
+    //     if (checkForCardSet()) {
+    //         // create a Scanner object
+    //         Scanner scanner = new Scanner(saveFileLocation.toFile());
+    //         // create a StringBuilder object
+    //         StringBuilder builder = new StringBuilder();
+    //         // while the Scanner object has another line
+    //         while (scanner.hasNextLine()) {
+    //             String line = scanner.nextLine();
+    //             // if the line contains the title of the CardSet object
+    //             if (line.contains(this.title) && line.contains(this.author) && line.contains(this.description.replaceAll(",",""))) {
+    //                 // for each Flashcard object in the flashcards LinkedList that is not already in
+    //                 // the file
+    //                 for (Flashcard flashcard : flashcards) {
+    //                     if (!line.contains(flashcard.getFrontSide()) && !line.contains(flashcard.getBackSide())) {
+    //                         // append the front side and back side of the Flashcard object to the
+    //                         // StringBuilder object
+    //                         builder.append(","+flashcard.getFrontSide() + "," + flashcard.getBackSide());
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //         scanner.close();
+    //         // create a BufferedWriter object
+    //         FileWriter location = new FileWriter(saveFileLocation.toString());
+    //         BufferedWriter writer = new BufferedWriter(location);
+    //         // write the StringBuilder object to the file
+    //         writer.write(builder.toString());
+    //         writer.close();
+    //         // File tempFile = new File("/CardSets.txt");
+    //         // File saveFile = new File("../../src/main/resources/CardSets.txt");
+    //         // FileUtils.copyFile(tempFile, saveFile);
+    //         // return 0
+    //         return 0;
+    //     }
+    //     // return -1
+    //     return -1;
+    // }
 
     /*
      * @method checkForCardSet

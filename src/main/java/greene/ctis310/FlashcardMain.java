@@ -33,6 +33,7 @@ public class FlashcardMain extends Application {
         currentCardSet.addFlashcard(new Flashcard("Abstraction", "The process of picking out (abstracting) common features of objects and procedures."));
         currentCardSet.addFlashcard(new Flashcard("Class", "A blueprint or prototype from which objects are created."));
 
+        currentCardSet.createCardSet();
     }
 
     static void setRoot(String fxml) throws IOException {
