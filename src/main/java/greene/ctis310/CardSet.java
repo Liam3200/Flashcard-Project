@@ -61,9 +61,7 @@ public class CardSet {
      * exceptions and print the message "File is not found." to the console.
      * 
      * @param title
-     * 
      * @param author
-     * 
      * @param description
      * 
      * @return none
@@ -122,7 +120,9 @@ public class CardSet {
                 writer.write("," + flashcard.getFrontSide() + "," + flashcard.getBackSide().replaceAll(",", ""));
             }
             writer.close();
-            // File tempFile = new File("/CardSets.txt");
+            // Path tempLoc = Paths.get("/CardSets.txt");
+            // Path saveLoc = Paths.get("../../src/main/resources/CardSets.txt");
+            // File tempFile = new File(tempLoc.toString());
             // File saveFile = new File("../../src/main/resources/CardSets.txt");
             // FileUtils.copyFile(tempFile, saveFile);
             return 0;
