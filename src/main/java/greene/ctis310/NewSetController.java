@@ -23,6 +23,12 @@ public class NewSetController {
 
     // Methods
 
+    /*
+     * Save Method
+     * 
+     * This method creates a new CardSet object and sets the title, author, and
+     * description of the CardSet object if the CardSet object is not already in the CardSets.txt file. The window then closes
+     */
     // save method
     @FXML
     private void save() throws IOException {
@@ -33,6 +39,8 @@ public class NewSetController {
         if (cardSet.createCardSet() == -1) {
             descriptionField.setPromptText("Error: Card Set already exists, please try again.");
         } else {
+            FlashcardMain.currentCardSet = cardSet;
+            FlashcardMain.currentFlashcard = cardSet.getFlashcards().get(0);
             // close the window
             // get the parent of the save button
             // get the scene of the parent
@@ -43,6 +51,12 @@ public class NewSetController {
         }
     }
 
+    /*
+     * Cancel Method
+     * 
+     * This method closes the window.
+     * 
+     */
     // cancel method
     @FXML
     private void cancel() throws IOException {

@@ -23,8 +23,6 @@ public class PrimaryController {
 
     TranslateTransition translateTransition;
 
-    private Flashcard currentFlashcard;
-
     // loads the Create New Card Set window
     @FXML
     private void createCardSet() throws IOException {
@@ -60,16 +58,16 @@ public class PrimaryController {
 
     // @FXML
     // private void saveCardSet() {
-    //     // save the current card set to a file
-    //     // display a message that the card set was saved
-    //     try {
-    //         if (FlashcardMain.currentCardSet.saveCardSet() == -1) {
-    //             flashcardDisplay.setText("Error saving card set!");
-    //         }
-    //     } catch (IOException e) {
-    //         System.out.println("Error saving card set!");
-    //     }
-    //     flashcardDisplay.setText("Card set saved!");
+    // // save the current card set to a file
+    // // display a message that the card set was saved
+    // try {
+    // if (FlashcardMain.currentCardSet.saveCardSet() == -1) {
+    // flashcardDisplay.setText("Error saving card set!");
+    // }
+    // } catch (IOException e) {
+    // System.out.println("Error saving card set!");
+    // }
+    // flashcardDisplay.setText("Card set saved!");
     // }
 
     @FXML
@@ -78,8 +76,8 @@ public class PrimaryController {
         // this is used when a new card set is loaded
         // or a new flashcard is created
         setTitle.setText(FlashcardMain.currentCardSet.getTitle());
-        currentFlashcard = FlashcardMain.currentCardSet.getCurrentFlashcard();
-        flashcardDisplay.setText(currentFlashcard.getFrontSide());
+        FlashcardMain.currentFlashcard = FlashcardMain.currentCardSet.getCurrentFlashcard();
+        flashcardDisplay.setText(FlashcardMain.currentFlashcard.getFrontSide());
     }
 
     @FXML
@@ -87,21 +85,25 @@ public class PrimaryController {
         // get the next flashcard from the CardSet object
         // display the next flashcard
         // if the flashcard is the last flashcard, disable the next button
-        currentFlashcard = FlashcardMain.currentCardSet.nextFlashcard();
-        if (currentFlashcard != null) {
-            translateTransition = new TranslateTransition();
-            translateTransition.setDuration(Duration.seconds(1));
-            translateTransition.setNode(flashcardDisplay);
-            translateTransition.setToX(flashcardDisplay.getTranslateX() + 80);
-            translateTransition.setAutoReverse(true);
-            translateTransition.setCycleCount(2);
-            translateTransition.setRate(4);
-            translateTransition.play();
-            translateTransition.setOnFinished(event -> {
-                flashcardDisplay.setTranslateX(0);
-                flashcardDisplay.setText(currentFlashcard.getFrontSide());
-            });
+        try {
+            FlashcardMain.currentFlashcard = FlashcardMain.currentCardSet.nextFlashcard();
+            if (FlashcardMain.currentFlashcard != null) {
+                translateTransition = new TranslateTransition();
+                translateTransition.setDuration(Duration.seconds(1));
+                translateTransition.setNode(flashcardDisplay);
+                translateTransition.setToX(flashcardDisplay.getTranslateX() + 80);
+                translateTransition.setAutoReverse(true);
+                translateTransition.setCycleCount(2);
+                translateTransition.setRate(4);
+                translateTransition.play();
+                translateTransition.setOnFinished(event -> {
+                    flashcardDisplay.setTranslateX(0);
+                    flashcardDisplay.setText(FlashcardMain.currentFlashcard.getFrontSide());
+                });
 
+            }
+        } catch (NullPointerException e) {
+            System.out.println("No more flashcards!");
         }
     }
 
@@ -110,20 +112,24 @@ public class PrimaryController {
         // get the previous flashcard from the CardSet object
         // display the previous flashcard
         // if the flashcard is the first flashcard, disable the previous button
-        currentFlashcard = FlashcardMain.currentCardSet.previousFlashcard();
-        if (currentFlashcard != null) {
-            translateTransition = new TranslateTransition();
-            translateTransition.setDuration(Duration.seconds(1));
-            translateTransition.setNode(flashcardDisplay);
-            translateTransition.setToX(flashcardDisplay.getTranslateX() - 80);
-            translateTransition.setAutoReverse(true);
-            translateTransition.setCycleCount(2);
-            translateTransition.setRate(4);
-            translateTransition.play();
-            translateTransition.setOnFinished(event -> {
-                flashcardDisplay.setTranslateX(0);
-                flashcardDisplay.setText(currentFlashcard.getFrontSide());
-            });
+        try {
+            FlashcardMain.currentFlashcard = FlashcardMain.currentCardSet.previousFlashcard();
+            if (FlashcardMain.currentFlashcard != null) {
+                translateTransition = new TranslateTransition();
+                translateTransition.setDuration(Duration.seconds(1));
+                translateTransition.setNode(flashcardDisplay);
+                translateTransition.setToX(flashcardDisplay.getTranslateX() - 80);
+                translateTransition.setAutoReverse(true);
+                translateTransition.setCycleCount(2);
+                translateTransition.setRate(4);
+                translateTransition.play();
+                translateTransition.setOnFinished(event -> {
+                    flashcardDisplay.setTranslateX(0);
+                    flashcardDisplay.setText(FlashcardMain.currentFlashcard.getFrontSide());
+                });
+            }
+        } catch (NullPointerException e) {
+            System.out.println("No more flashcards!");
         }
     }
 
@@ -131,8 +137,8 @@ public class PrimaryController {
     private void flipFlashcard() {
         // flip the flashcard over to the back side
         // if the flashcard is on the back side, flip it back to the front side
-        currentFlashcard = FlashcardMain.currentCardSet.getCurrentFlashcard();
-        if (currentFlashcard != null) {
+        FlashcardMain.currentFlashcard = FlashcardMain.currentCardSet.getCurrentFlashcard();
+        if (FlashcardMain.currentFlashcard != null) {
             translateTransition = new TranslateTransition();
             translateTransition.setDuration(Duration.seconds(1));
             translateTransition.setNode(flashcardDisplay);
@@ -143,11 +149,11 @@ public class PrimaryController {
             translateTransition.playFromStart();
             translateTransition.setOnFinished(event -> {
                 flashcardDisplay.setTranslateX(0);
-                currentFlashcard.flip();
-                if (currentFlashcard.getCurrentSide() == 0) {
-                    flashcardDisplay.setText(currentFlashcard.getFrontSide());
+                FlashcardMain.currentFlashcard.flip();
+                if (FlashcardMain.currentFlashcard.getCurrentSide() == 0) {
+                    flashcardDisplay.setText(FlashcardMain.currentFlashcard.getFrontSide());
                 } else {
-                    flashcardDisplay.setText(currentFlashcard.getBackSide());
+                    flashcardDisplay.setText(FlashcardMain.currentFlashcard.getBackSide());
                 }
             });
         }

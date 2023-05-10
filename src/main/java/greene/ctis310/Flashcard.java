@@ -1,5 +1,14 @@
 package greene.ctis310;
 
+/*
+ * Class Flashcard
+ * 
+ * This class represents a single flashcard. It has two sides, a front side and a back side.
+ * The front side is the side that is initially displayed to the user. The back side is the side that is displayed when the user clicks the "Flip" button.
+ * This class has a simple compareTo method that compares the front side of this flashcard to the front side of another flashcard.
+ * This class also has a flip method that changes the current side of the flashcard to the other side.
+ * 
+ */
 public class Flashcard implements Comparable<Flashcard> {
     // Instance variables
     private String frontSide; // The front side of the flashcard, represented as 0

@@ -10,12 +10,17 @@ import java.io.IOException;
 
 /**
  * JavaFX App
+ * 
+ * Problems: Creating a new flashcard should add it to the end of the current card set.
+ * 
  */
 public class FlashcardMain extends Application {
 
     private static Scene scene;
 
     public static CardSet currentCardSet;
+
+    public static Flashcard currentFlashcard;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -26,13 +31,14 @@ public class FlashcardMain extends Application {
 
         // create a new CardSet object
         currentCardSet = new CardSet("CTIS 310", "Liam", "CTIS 310 Vocab");
+        currentFlashcard = new Flashcard(currentCardSet.getTitle(),currentCardSet.getDescription());
         // add some Flashcards to the CardSet
         currentCardSet.addFlashcard(new Flashcard("Encapsulation", "Integrating data (variables) and code (methods) into a single unit."));
         currentCardSet.addFlashcard(new Flashcard("Inheritance", "The process by which one class takes on the attributes and methods of another."));
         currentCardSet.addFlashcard(new Flashcard("Polymorphism", "When a message is sent to an object, the object's class determines how that message will be processed."));
         currentCardSet.addFlashcard(new Flashcard("Abstraction", "The process of picking out (abstracting) common features of objects and procedures."));
         currentCardSet.addFlashcard(new Flashcard("Class", "A blueprint or prototype from which objects are created."));
-
+        currentCardSet.addFlashcard(new Flashcard("Object", "A software bundle of related state and behavior."));
         currentCardSet.createCardSet();
     }
 

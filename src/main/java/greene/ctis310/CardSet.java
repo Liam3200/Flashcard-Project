@@ -14,6 +14,23 @@ import java.util.Scanner;
 // import org.apache.commons.io.FileUtils;
 
 
+/*
+ * @class CardSet
+ * 
+ * The CardSet class has a title, author, description, and a LinkedList of
+ * Flashcard objects. The CardSet class should have a constructor that takes a
+ * title, author, and description as parameters. The constructor should
+ * initialize the instance variables title, author, and description with the
+ * values passed to the constructor. The constructor should also initialize the
+ * instance variable currentFlashcard with a new Flashcard object. The
+ * constructor should initialize the instance variable flashcards with a new
+ * LinkedList object. The constructor should add the currentFlashcard object to
+ * the flashcards LinkedList. The constructor should initialize the instance
+ * variable saveFileLocation with the path to the CardSets.txt file.
+ * The CardSet class has the methods createCardSet, loadCardSet, addFlashcard, removeFlashcard,
+ * getFlashcard, getFlashcardCount, getFlashcardIterator, and toString
+ * 
+ */
 public class CardSet {
     // Instance variables
     private String title;
