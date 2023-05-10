@@ -1,2 +1,3 @@
-
-CTIS 310,Liam,CTIS 310 Vocab,CTIS 310,CTIS 310 Vocab,Encapsulation,Integrating data (variables) and code (methods) into a single unit.,Inheritance,The process by which one class takes on the attributes and methods of another.,Polymorphism,When a message is sent to an object the object's class determines how that message will be processed.,Abstraction,The process of picking out (abstracting) common features of objects and procedures.,Class,A blueprint or prototype from which objects are created.,Object,A software bundle of related state and behavior.
+test,admin,This is a test set,testing,This is a test
+Mammals,scientist,Artic fox,The Arctic fox (Alopex lagopus) is a furry mammal that lives in the far north,Black Bear,American Black Bears are large mostly harmless bears that live mostly in forests but also in swamps and desert scrub,Cow,Cattle are farm animals with thick skin and hoofed feet
+Ocean,scientist,current,directed movement of sea water,tide pool,pool revealed in rocks when the tide goes out,kelp,large type of brown seaweed with long strips
