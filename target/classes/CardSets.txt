@@ -1,3 +1,2 @@
-test,admin,This is a test set,testing,This is a test
-Mammals,scientist,Artic fox,The Arctic fox (Alopex lagopus) is a furry mammal that lives in the far north,Black Bear,American Black Bears are large mostly harmless bears that live mostly in forests but also in swamps and desert scrub,Cow,Cattle are farm animals with thick skin and hoofed feet
-Ocean,scientist,current,directed movement of sea water,tide pool,pool revealed in rocks when the tide goes out,kelp,large type of brown seaweed with long strips
+
+Test Set,Liam,This is a test set,Test Set,This is a test set
