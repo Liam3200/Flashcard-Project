@@ -1,2 +1,2 @@
 
-test,Liam,test,test,test
+CTIS 310,Liam,CTIS 310 Vocab,CTIS 310,CTIS 310 Vocab,Encapsulation,Integrating data (variables) and code (methods) into a single unit.,Inheritance,The process by which one class takes on the attributes and methods of another.,Polymorphism,When a message is sent to an object the object's class determines how that message will be processed.,Abstraction,The process of picking out (abstracting) common features of objects and procedures.,Class,A blueprint or prototype from which objects are created.,Object,A software bundle of related state and behavior.

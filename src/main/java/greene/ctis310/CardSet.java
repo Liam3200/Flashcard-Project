@@ -13,7 +13,6 @@ import java.util.Scanner;
 
 // import org.apache.commons.io.FileUtils;
 
-
 /*
  * @class CardSet
  * 
@@ -62,7 +61,9 @@ public class CardSet {
      * exceptions and print the message "File is not found." to the console.
      * 
      * @param title
+     * 
      * @param author
+     * 
      * @param description
      * 
      * @return none
@@ -118,7 +119,7 @@ public class CardSet {
             BufferedWriter writer = new BufferedWriter(location);
             writer.write("\n" + this.title + "," + this.author + "," + this.description.replaceAll(",", ""));
             for (Flashcard flashcard : flashcards) {
-                writer.write(","+flashcard.getFrontSide() + "," + flashcard.getBackSide().replaceAll(",",""));
+                writer.write("," + flashcard.getFrontSide() + "," + flashcard.getBackSide().replaceAll(",", ""));
             }
             writer.close();
             // File tempFile = new File("/CardSets.txt");
@@ -146,42 +147,45 @@ public class CardSet {
      */
     // updates the CardSet object in the file
     // public int saveCardSet() throws IOException {
-    //     if (checkForCardSet()) {
-    //         // create a Scanner object
-    //         Scanner scanner = new Scanner(saveFileLocation.toFile());
-    //         // create a StringBuilder object
-    //         StringBuilder builder = new StringBuilder();
-    //         // while the Scanner object has another line
-    //         while (scanner.hasNextLine()) {
-    //             String line = scanner.nextLine();
-    //             // if the line contains the title of the CardSet object
-    //             if (line.contains(this.title) && line.contains(this.author) && line.contains(this.description.replaceAll(",",""))) {
-    //                 // for each Flashcard object in the flashcards LinkedList that is not already in
-    //                 // the file
-    //                 for (Flashcard flashcard : flashcards) {
-    //                     if (!line.contains(flashcard.getFrontSide()) && !line.contains(flashcard.getBackSide())) {
-    //                         // append the front side and back side of the Flashcard object to the
-    //                         // StringBuilder object
-    //                         builder.append(","+flashcard.getFrontSide() + "," + flashcard.getBackSide());
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //         scanner.close();
-    //         // create a BufferedWriter object
-    //         FileWriter location = new FileWriter(saveFileLocation.toString());
-    //         BufferedWriter writer = new BufferedWriter(location);
-    //         // write the StringBuilder object to the file
-    //         writer.write(builder.toString());
-    //         writer.close();
-    //         // File tempFile = new File("/CardSets.txt");
-    //         // File saveFile = new File("../../src/main/resources/CardSets.txt");
-    //         // FileUtils.copyFile(tempFile, saveFile);
-    //         // return 0
-    //         return 0;
-    //     }
-    //     // return -1
-    //     return -1;
+    // if (checkForCardSet()) {
+    // // create a Scanner object
+    // Scanner scanner = new Scanner(saveFileLocation.toFile());
+    // // create a StringBuilder object
+    // StringBuilder builder = new StringBuilder();
+    // // while the Scanner object has another line
+    // while (scanner.hasNextLine()) {
+    // String line = scanner.nextLine();
+    // // if the line contains the title of the CardSet object
+    // if (line.contains(this.title) && line.contains(this.author) &&
+    // line.contains(this.description.replaceAll(",",""))) {
+    // // for each Flashcard object in the flashcards LinkedList that is not already
+    // in
+    // // the file
+    // for (Flashcard flashcard : flashcards) {
+    // if (!line.contains(flashcard.getFrontSide()) &&
+    // !line.contains(flashcard.getBackSide())) {
+    // // append the front side and back side of the Flashcard object to the
+    // // StringBuilder object
+    // builder.append(","+flashcard.getFrontSide() + "," + flashcard.getBackSide());
+    // }
+    // }
+    // }
+    // }
+    // scanner.close();
+    // // create a BufferedWriter object
+    // FileWriter location = new FileWriter(saveFileLocation.toString());
+    // BufferedWriter writer = new BufferedWriter(location);
+    // // write the StringBuilder object to the file
+    // writer.write(builder.toString());
+    // writer.close();
+    // // File tempFile = new File("/CardSets.txt");
+    // // File saveFile = new File("../../src/main/resources/CardSets.txt");
+    // // FileUtils.copyFile(tempFile, saveFile);
+    // // return 0
+    // return 0;
+    // }
+    // // return -1
+    // return -1;
     // }
 
     /*
@@ -278,7 +282,9 @@ public class CardSet {
         // if the flashcards LinkedList is not empty
         if (!flashcards.isEmpty() && flashcardIterator.hasNext()) {
             // return the first Flashcard object in the flashcards LinkedList
-            flashcardIterator.next();
+            if (!flashcardIterator.hasPrevious()) {
+                flashcardIterator.next();
+            }
             currentFlashcard = flashcardIterator.next();
             return currentFlashcard;
         }
@@ -300,7 +306,9 @@ public class CardSet {
         // if the flashcards LinkedList is not empty
         if (!flashcards.isEmpty() && flashcardIterator.hasPrevious()) {
             // return the last Flashcard object in the flashcards LinkedList
-            flashcardIterator.previous();
+            if (!flashcardIterator.hasNext()) {
+                flashcardIterator.previous();
+            }
             currentFlashcard = flashcardIterator.previous();
             return currentFlashcard;
         }
