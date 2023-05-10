@@ -1,6 +1,7 @@
 package greene.ctis310;
 
 import java.io.IOException;
+import java.util.NoSuchElementException;
 
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -102,7 +103,7 @@ public class PrimaryController {
                 });
 
             }
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | NoSuchElementException e) {
             System.out.println("No more flashcards!");
         }
     }
@@ -128,7 +129,7 @@ public class PrimaryController {
                     flashcardDisplay.setText(FlashcardMain.currentFlashcard.getFrontSide());
                 });
             }
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | NoSuchElementException e) {
             System.out.println("No more flashcards!");
         }
     }
